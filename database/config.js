@@ -12,7 +12,7 @@ const dbConnection = async() => {
             useUnifiedTopology: true,
             useCreateIndex: true
         });
-
+        mongoose.set('useFindAndModify', false);
         console.log("BD Online");
     } catch (error) {
         console.log(error);

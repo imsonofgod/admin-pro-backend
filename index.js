@@ -9,16 +9,16 @@ const { dbConnection } = require('./database/config');
 const app = express();
 //Configura Cors
 app.use(cors());
+// Lectura y parceo del body
+app.use(express.json());
 
 //base de datos
 dbConnection();
 
-app.get("/", (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'Hola Mundo'
-    });
-});
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
+
+
 
 app.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto 3000');
